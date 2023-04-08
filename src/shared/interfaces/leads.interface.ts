@@ -21,7 +21,11 @@ export type LeadInterface = {
 
 
 export interface LeadStateInterface {
-    leadList: LeadInterface[];
+    leadsList: LeadInterface[];
     fetchStatus: fetchStatus;
     error: string;
+}
+
+export interface LeadListResponseInterface {
+    data: LeadInterface[];
 }

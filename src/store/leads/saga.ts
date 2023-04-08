@@ -30,22 +30,10 @@ function* getLeadListSaga() {
 
         // Getting pokemon information
     
-        const leadListResponse: { data: LeadInterface } = yield getLeadList();
-        console.log(leadListResponse, "leadListResponse");
-
+        const leadListResponse: { data: LeadInterface[] } = yield getLeadList();
+        
         if (leadListResponse) {
-            // const pokemonListWithData: LeadInterface[] = pokeList.map(
-            //     (responseData) => {
-            //         const { data } = responseData;
-            //         const { name, id, sprites } = data;
-            //         return {
-            //             id: id,
-            //             name: name,
-            //             image: sprites.front_default,
-            //         };
-            //     }
-            // );
-          //  yield put(actions.getLeadsListSuccess(pokemonListWithData));
+            yield put(actions.getLeadsListSuccess(leadListResponse.data));
         } else {
             yield put(actions.getLeadsListFailure("Error getting leads details"));
         }

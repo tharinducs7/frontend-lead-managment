@@ -10,7 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const leads = useSelector((state: any) => state.leads);
   const dispatch = useDispatch();
-
+  console.log(leads.leadsList, "leads");
+  
     /**
    * Fetch leads list 
    */
