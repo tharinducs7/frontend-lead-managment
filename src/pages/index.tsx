@@ -1,10 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getLeadsList } from '@/store/leads/actions';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const leads = useSelector((state: any) => state.leads);
+  const dispatch = useDispatch();
+
+    /**
+   * Fetch leads list 
+   */
+  useEffect(() => {
+    dispatch(getLeadsList());
+  }, [dispatch]);
+
   return (
     <div className="flex-1">
       <div className="flex flex-wrap h-screen">

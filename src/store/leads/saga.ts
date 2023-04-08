@@ -10,7 +10,7 @@ import { toast } from 'react-toast'
 // import { TOAST_MESSAGES } from "@/utils/constants";
 
 function getLeadList() {
-    return axios.get("https://pokeapi.co/api/v2/pokemon?limit=151", {
+    return axios.get("https://expressjs-prisma-production-3613.up.railway.app/api/leads", {
         headers: {
             "Content-Type": "application/json",
         },
