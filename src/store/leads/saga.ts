@@ -41,8 +41,9 @@ function* getLeadListSaga() {
     }
 }
 
-function* getLeadSaga({ id }) {
+function* getLeadSaga(payload: any) {
     try {
+        const { id } = payload
         const leadResponse: { data: LeadInterface } = yield getLead(id);
 
         if (leadResponse) {
