@@ -7,14 +7,13 @@ import { getLeadsList } from '@/store/leads/actions';
 import LeadCard from '@/components/LeadCard';
 import { LeadInterface } from '@/shared/interfaces/leads.interface';
 import LeadInfo from '@/components/LeadInfo';
-import Sidebar from '@/components/Sidebar';
 
 export default function Home() {
   const leads = useSelector((state: any) => state.leads);
   const dispatch = useDispatch();
-  console.log(leads.leadsList, "leads");
   const [showSidebar, setShowSidebar] = useState(false);
   const [cuurentLead, setCurrentLead] = useState<LeadInterface | undefined>();
+  const [selectedCustomerId, setSelectedCustomerId] = useState<number | null>(null);
 
   const toggleSidebar = (lead: LeadInterface) => {
     if (lead.id === cuurentLead?.id) {
@@ -23,9 +22,13 @@ export default function Home() {
     } else {
       setShowSidebar(true);
       setCurrentLead(lead)
+      setSelectedCustomerId(lead.id);
+      console.log("hi", lead);
+      
     }
   };
-  /**
+
+/**
  * Fetch leads list 
  */
   useEffect(() => {
@@ -33,12 +36,6 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    // <div className="flex flex-wrap">
-    //   {leads?.leadsList.map((lead: LeadInterface, key: number) => (
-    //     <LeadCard key={key} lead={lead} />
-    //   ))}
-    // </div>
-
     <div className="flex h-screen">
       <div className="flex-1">
         <div className="px-4 py-8">
@@ -48,6 +45,12 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </div>
+      <input type="checkbox" id="my-modal" className="modal-toggle" checked={showSidebar} />
+      <div className="modal">
+        {cuurentLead && (
+          <LeadInfo lead={cuurentLead} setShowSidebar={setShowSidebar} />
+        )}
       </div>
     </div>
   )

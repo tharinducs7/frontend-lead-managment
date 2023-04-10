@@ -17,21 +17,19 @@ function getLeadList() {
     });
 }
 
-function getPokemon(url: string) {
-    return axios.get(url, {
+function getLead(id: number) {
+    return axios.get(`https://expressjs-prisma-production-3613.up.railway.app/api/leads/${id}`, {
         headers: {
             "Content-Type": "application/json",
         },
     });
 }
 
+
 function* getLeadListSaga() {
     try {
-
-        // Getting pokemon information
-    
         const leadListResponse: { data: LeadInterface[] } = yield getLeadList();
-        
+
         if (leadListResponse) {
             yield put(actions.getLeadsListSuccess(leadListResponse.data));
         } else {
@@ -43,9 +41,25 @@ function* getLeadListSaga() {
     }
 }
 
+function* getLeadSaga({ id }) {
+    try {
+        const leadResponse: { data: LeadInterface } = yield getLead(id);
+
+        if (leadResponse) {
+            yield put(actions.getLeadSuccess(leadResponse.data));
+        } else {
+            yield put(actions.getLeadFailure("Error getting leads details"));
+        }
+    } catch (error) {
+        console.log(error);
+        yield put(actions.getLeadFailure("Error in leads saga"));
+    }
+}
+
 function* leadsSaga() {
     yield all([
         takeLatest(actionTypes.GET_LEADS_LIST, getLeadListSaga),
+        takeLatest(actionTypes.GET_LEAD, getLeadSaga),
     ]);
 }
 

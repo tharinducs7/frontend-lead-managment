@@ -24,6 +24,7 @@ export interface LeadStateInterface {
     leadsList: LeadInterface[];
     fetchStatus: fetchStatus;
     error: string;
+    selectedLead: object
 }
 
 export interface LeadListResponseInterface {

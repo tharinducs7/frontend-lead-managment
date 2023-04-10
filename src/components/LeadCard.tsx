@@ -9,7 +9,7 @@ interface LeadCardProps {
 
 const LeadCard: FC<LeadCardProps> = ({ lead, onClickFunc }) => {
     return (
-        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2" onClick={() => onClickFunc(lead)}>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 cursor-pointer">
                 <div className="p-4 flex items-center justify-between">
                     <div className="flex items-center">
@@ -26,9 +26,7 @@ const LeadCard: FC<LeadCardProps> = ({ lead, onClickFunc }) => {
                         </div>
                     </div>
                     <div className="flex items-center">
-                        <Link href="/[lid]" as={`/${lead.id}`}>
-                            More Info
-                        </Link>
+    
                     </div>
                 </div>
             </div>

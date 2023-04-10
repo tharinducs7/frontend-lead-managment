@@ -16,7 +16,26 @@ export type GetLeadsListFailure = {
   payload: string;
 };
 
+/****************************** GET LEAD **********************************/
+export type GetLead = {
+    type: typeof actionTypes.GET_LEAD;
+    id: number
+};
+
+export type GetLeadSuccess = {
+    type: typeof actionTypes.GET_LEAD_SUCCESS;
+    payload: LeadInterface;
+};
+
+export type GetLeadFailure = {
+    type: typeof actionTypes.GET_LEAD_FAILURE;
+    payload: string;
+};
+
 export type LeadsActions =
     | GetLeadsList
     | GetLeadsListSuccess
-    | GetLeadsListFailure;
+    | GetLeadsListFailure
+    | GetLead
+    | GetLeadSuccess
+    | GetLeadFailure;

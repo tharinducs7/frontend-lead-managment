@@ -3,20 +3,57 @@ import { LeadInterface } from "@/shared/interfaces/leads.interface";
 
 interface LeadCardProps {
     lead: LeadInterface | undefined
+    setShowSidebar: (value: boolean) => void;
 }
 
-const LeadInfo: FC<LeadCardProps> = ({ lead }) => {
+const LeadInfo: FC<LeadCardProps> = ({ lead, setShowSidebar }) => {
     return (
-        <div className="card w-96 bg-base-100 shadow-xl h-5/6">
-            <figure className="px-10 pt-10">
-                <img src={lead?.image} alt={lead?.name} className="rounded-xl" />
-            </figure>
-            <div className="card-body items-center text-center text-cyan-700">
-                <h2 className="card-title">{lead?.name}</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div className="card-actions">
-                    <button className="btn btn-primary">Buy Now</button>
-                </div>
+        <div className="modal-box">
+            <div className="transition duration-500 ease-in-out transform rounded-lg cursor-pointer">
+                <a href="#" className="w-full block h-full">
+                    <div className="flex items-center mt-2">
+                        <img className='w-10 h-10 object-cover rounded-full' alt='User avatar' src={lead?.image} />
+
+                        <div className="pl-3">
+                            <div className="font-medium">
+                                {lead?.name}
+                            </div>
+                            <div className="text-gray-600 text-sm">
+                                {lead?.jobTitle} of {lead?.company}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="bg-white w-full p-4">
+                        <p className="text-gray-800 text-sm font-medium mb-2">
+                            Suggested Personalization Line
+                        </p>
+                        <p className="text-indigo-500 font-medium">
+                            {lead?.personalizationLine}
+                        </p>
+
+
+                        <div className="flex flex-wrap justify-starts items-center py-3 border-b-2 text-xs text-white font-medium">
+                            <span className="m-1 px-2 py-1 rounded bg-indigo-500">
+                                {lead?.industry}
+                            </span>
+                            <span className="m-1 px-2 py-1 rounded bg-indigo-500">
+                                {lead?.email}
+                            </span>
+                            <span className="m-1 px-2 py-1 rounded bg-indigo-500">
+                                {lead?.phone}
+                            </span>
+                        </div>
+
+                    </div>
+                </a>
+            </div>
+            <div className="modal-action">
+                <label className="btn btn-warning" onClick={() => setShowSidebar(false)}>Not a fit</label>
+                <label className="btn btn-success" onClick={() => setShowSidebar(false)}>All Good!</label>
+
+                <label htmlFor="my-modal" className="btn" onClick={() => setShowSidebar(false)}>
+                    <i className='bx bx-window-close' style={{color:'#f1026a'}}  onClick={() => setShowSidebar(false)}></i>
+                </label>
             </div>
         </div>
     );

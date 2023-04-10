@@ -21,6 +21,20 @@ export const leadsReducer = (
                 error: action.payload,
             };
         }
+        case actionsTypes.GET_LEAD_SUCCESS: {
+            return {
+                ...state,
+                fetchStatus: "success",
+                selectedLead: action.payload,
+            };
+        }
+        case actionsTypes.GET_LEAD_FAILURE: {
+            return {
+                ...state,
+                fetchStatus: "fail",
+                error: action.payload,
+            };
+        }
         default:
             return { ...state };
     }
