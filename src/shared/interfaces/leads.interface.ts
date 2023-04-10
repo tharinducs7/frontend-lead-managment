@@ -1,11 +1,11 @@
-import { fetchStatus } from "@/shared/types/fetch-status.type";
+import { fetchStatus } from "../types/fetch.status"
 
 export type LeadInterface = {
     id: number
-    name?: string | null
+    name?: string
     email: string
     phone?: string | null
-    image?: string | null
+    image?: string
     company?: string | null
     country_code?: string | null
     jobTitle?: string | null
